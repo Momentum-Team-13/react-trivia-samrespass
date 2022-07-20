@@ -38,4 +38,5 @@ a {
 
 .cancelQuiz {
   z-index: 21;
+  position: fixed;
 }

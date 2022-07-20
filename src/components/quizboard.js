@@ -8,12 +8,7 @@ export default function Quizboard () {
     const [topic, setTopic] = useState([]);
     const [loading, setLoading] = useState(true);
     const [quiz, setQuiz] = useState(false);
-
-    function startQuiz() {
-        return (
-          "hi"
-        )
-    }
+    const [category, setCategory] = useState([0])
 
     useEffect(() => {
         axios
@@ -27,10 +22,10 @@ export default function Quizboard () {
             return (
                <div className="quizBoard">
                 {quiz === true && <button className="cancelQuiz" onClick={() => setQuiz(false)}>Quit</button>}
-                {quiz === true && <Quiz {...topic.id} />}
+                {quiz === true && <Quiz category = {category} />}
                 
                  {topic.map(topic => (
-         <button className="quizSquare" onClick={() => setQuiz(true)} value={topic.id}>   
+         <button className="quizSquare" onClick={() => {setQuiz(true);setCategory(`${topic.id}`)}} value={topic.id}>   
          <h3>{topic.name}</h3>
      </button>
         ))}
