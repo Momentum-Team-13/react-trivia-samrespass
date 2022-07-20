@@ -1,0 +1,30 @@
+/* global stylings */
+h3 {
+  font-size: 2vw;
+}
+a {
+  text-decoration: none;
+  color: gold;
+}
+/* quizboard.js stylings */
+.quizBoard {
+  display:grid;
+  grid-template-columns: 16% 16% 16% 16% 16% 16%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+.quizSquare {
+  background-image: linear-gradient(blue 20%, navy);
+  border: solid;
+  padding: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: gold;
+  border-color: black;
+}
+
+.quiz {
+  position: absolute;
+  z-index: 20;
+}
