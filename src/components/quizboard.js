@@ -26,7 +26,8 @@ export default function Quizboard () {
         else {
             return (
                <div className="quizBoard">
-                {quiz === true && <div><Quiz/></div>}
+                {quiz === true && <button className="cancelQuiz" onClick={() => setQuiz(false)}>Quit</button>}
+                {quiz === true && <Quiz {...topic.id} />}
                 
                  {topic.map(topic => (
          <button className="quizSquare" onClick={() => setQuiz(true)} value={topic.id}>   
