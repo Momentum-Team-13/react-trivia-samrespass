@@ -4,24 +4,25 @@ import axios from "axios"
 
 export default function Quizzer ({category}) {
     const [round, setRound] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading2, setLoading2] = useState(true);
+    const [slide, setSlide] = useState([0]);
+    const [points, setPoints] = useState([0])
 
     useEffect(() => {
         axios
-        .get(`https://opentdb.com/api.php?amount=10&category=${category}`)
-        .then((response) => setRound(response.data.results),setLoading(false),)
-
+        .get(`https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple&category=${category}`)
+        .then((response) => setRound(response.data.results),setLoading2(false),console.log("why god"))
         }, [category])
-    if (loading === true) return "Loading..."
+    if (loading2 === true) return "Loading..."
     if (round.length > 0) {
             return (
                <div className="quiz">
-               <div className="question"><h1> {round[0].question}</h1>
-               <div className="answers">  {round[0].incorrect_answers.map(answer => (
+               <div className="question"><h1>{round[slide].question}</h1>
+               <div className="answers">  {round[slide].incorrect_answers.map(answer => (
            
-           <h3 className="answer">{answer}</h3>
+           <button className="answer" onClick={() => {setPoints(points + 10);setSlide(slide + 1)}}>{answer}</button>
   
-          ))}</div></div>
+          ))} <button className="answer" onClick={() => {setPoints(points - 10);setSlide(slide + 1)}}>{round[slide].correct_answer}</button></div></div>
       
                  
                </div> 

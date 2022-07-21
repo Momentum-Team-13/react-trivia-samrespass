@@ -9,6 +9,7 @@ export default function Quizboard () {
     const [loading, setLoading] = useState(true);
     const [quiz, setQuiz] = useState(false);
     const [category, setCategory] = useState([0])
+    
 
     useEffect(() => {
         axios
