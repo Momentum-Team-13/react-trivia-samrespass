@@ -16,8 +16,9 @@ export default function Quizboard () {
         .then((response) => setTopic(response.data.trivia_categories))
         .then(setLoading(false))
         .catch(err=>console.log(err))
-        }, []);
-        if (loading === true) return "Loading..."
+        }, [])
+        
+        if (loading === true) {return ("Loading...")}
         else {
             return (
                <div className="quizBoard">
@@ -25,7 +26,7 @@ export default function Quizboard () {
                 {quiz === true && <Quiz category = {category} />}
                 
                  {topic.map(topic => (
-         <button className="quizSquare" onClick={() => {setQuiz(true);setCategory(`${topic.id}`)}} value={topic.id}>   
+         <button className="quizSquare" onClick={() => {setQuiz(true);setCategory(`${topic.id}`)}}>   
          <h3>{topic.name}</h3>
      </button>
         ))}

@@ -40,3 +40,18 @@ a {
   z-index: 21;
   position: fixed;
 }
+
+.answers {
+  justify-content: center;
+  margin-top: 0;
+  display: flex;
+}
+
+.question {
+  width: 700px;
+}
+
+.answer {
+  padding: 1em;
+  width: 150px;
+}
