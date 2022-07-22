@@ -5,22 +5,48 @@ import Scoreboard from './scoreboard.js'
 
 function Quizzer ({category}) {
     const [round, setRound] = useState([]);
-    const [roundStart, setRoundStart] = useState(null)
     const [slide, setSlide] = useState(0);
     const [points, setPoints] = useState(0)
-    const [shuffle, setShuffle] = useState([20, 40, 60, 80])
+    let [answers, setAnswers] = useState([])
     const [finish, setFinish] = useState(false)
 
-const roundSetter = (round) => {
-    setRoundStart(round)
-}
+    function decoder(html) {
+        let txt = document.createElement("textarea")
+        txt.innerHTML = html;
+        return txt.value;
+    }
 
  
-    useEffect(() => {console.log("one")
+    useEffect(() => {
         axios
         .get(`https://opentdb.com/api.php?amount=10&category=${category}`)
         .then((questions) => setRound(questions.data.results))
+        
         }, [category])
+    if (round.length > 1) {
+        separate()
+        answers.push(round[slide].correct_answer)
+    }
+
+function separate() {
+    const splits = round[slide].incorrect_answers
+    splits.forEach( split => {answers.push(split)});
+}
+
+function emptyAnswers() {
+    setAnswers([])
+}
+
+function checkAnswer(answers) {
+    if (answers === round[slide].correct_answer) {
+        setPoints(points + 10)
+    }
+    else {
+        setPoints(points - 20)
+    }
+}
+        
+
     if (round.length < 1) {
         return (
             <div className="quiz">
@@ -28,17 +54,21 @@ const roundSetter = (round) => {
             </div>
         )
     }
-    if (round.length > 4 ) {
+    if (round.length > 1 ) {
+        
             return (
                <div className="quiz">
                 {finish === true && <Scoreboard points = {points} />}
-               <div className="question"><h1>{round[slide].question}</h1>
+               <div className="question"><h1>{decoder(round[slide].question)}</h1>
                
-               <div className="answers">  {round[slide].incorrect_answers.map(answer => (
+               <div className="answers"> 
+               {answers.sort().map(answers => (
 
-           <button className="answer" onClick={() => {setPoints(points - 10);slide < 9 && setSlide(slide + 1);slide === 9 && setFinish(true)}}>{answer}</button>
-  
-          ))} <button className="answer" onClick={() => {setPoints(points + 10);slide < 9 && setSlide(slide + 1);slide === 9 && setFinish(true)}}>{round[slide].correct_answer}</button></div></div>
+<button className="answer" onClick={() => {emptyAnswers();checkAnswer(answers);slide < 9 && setSlide(slide + 1);slide === 9 && setFinish(true)}}>{decoder(answers)}</button>))} 
+              
+               </div>
+               
+               </div>
       
         
                </div> 

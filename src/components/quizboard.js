@@ -8,6 +8,8 @@ export default function Quizboard () {
     const [topic, setTopic] = useState([]);
     const [quiz, setQuiz] = useState(false);
     const [category, setCategory] = useState(0)
+
+
     
 
     useEffect(() => {
@@ -16,7 +18,10 @@ export default function Quizboard () {
         .then((res) => setTopic(res.data.trivia_categories))
         .catch(err=>console.log(err))
         }, [])
-
+        if (topic.length === 0) return( 
+        <div className="quiz">
+        <h1>Loading...</h1>
+        </div>) 
         if (topic.length > 0) {
             return (
                <div className="quizBoard">
