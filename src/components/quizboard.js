@@ -13,7 +13,7 @@ export default function Quizboard () {
     useEffect(() => {
         axios
         .get("https://opentdb.com/api_category.php")
-        .then((response) => setTopic(response.data.trivia_categories))
+        .then((res) => setTopic(res.data.trivia_categories))
         .catch(err=>console.log(err))
         }, [])
 
@@ -24,7 +24,7 @@ export default function Quizboard () {
                 {quiz === true && <Quiz category = {category} />}
                 
                  {topic.map(topic => (
-         <button className="quizSquare" onClick={() => {setQuiz(true);setCategory(`${topic.id}`)}}>   
+         <button className="quizSquare" onClick={() => {setQuiz(true);setCategory(`${topic.id}`)}}>
          <h3>{topic.name}</h3>
      </button>
         ))}

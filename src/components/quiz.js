@@ -16,11 +16,11 @@ const roundSetter = (round) => {
 }
 
  
-    useEffect(() => {
+    useEffect(() => {console.log("one")
         axios
-        .get(`https://opentdb.com/api.php?amount=10&difficulty=hard&category=${category}&type=multiple`)
-        .then((response) => setRound(response.data.results))
-        }, [])
+        .get(`https://opentdb.com/api.php?amount=10&category=${category}`)
+        .then((questions) => setRound(questions.data.results))
+        }, [category])
     if (round.length < 1) {
         return (
             <div className="quiz">
@@ -28,7 +28,7 @@ const roundSetter = (round) => {
             </div>
         )
     }
-    if (round.length > 1) {
+    if (round.length > 4 ) {
             return (
                <div className="quiz">
                 {finish === true && <Scoreboard points = {points} />}
@@ -36,7 +36,7 @@ const roundSetter = (round) => {
                
                <div className="answers">  {round[slide].incorrect_answers.map(answer => (
 
-           <button className="answer" onClick={() => {setPoints(points - 20);slide < 9 && setSlide(slide + 1);slide === 9 && setFinish(true)}}>{answer}</button>
+           <button className="answer" onClick={() => {setPoints(points - 10);slide < 9 && setSlide(slide + 1);slide === 9 && setFinish(true)}}>{answer}</button>
   
           ))} <button className="answer" onClick={() => {setPoints(points + 10);slide < 9 && setSlide(slide + 1);slide === 9 && setFinish(true)}}>{round[slide].correct_answer}</button></div></div>
       
