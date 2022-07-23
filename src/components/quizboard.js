@@ -25,7 +25,8 @@ export default function Quizboard () {
         if (topic.length > 0) {
             return (
                <div className="quizBoard">
-                {quiz === true && <button className="cancelQuiz" onClick={() => setQuiz(false)}>Quit</button>}
+                {quiz === true && <button className="cancelQuiz" onClick={() => setQuiz(false)}>Quit?</button>
+                }
                 {quiz === true && <Quiz category = {category} />}
                 
                  {topic.map(topic => (

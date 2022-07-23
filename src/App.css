@@ -4,6 +4,7 @@ h1 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 3em;
   margin: 0;
+  padding: 0 3em;
 }
 h3 {
   font-size: 2vw;
@@ -14,20 +15,26 @@ a {
 }
 /* quizboard.js stylings */
 .quizBoard {
-  display:grid;
-  grid-template-columns: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
-  grid-template-rows: 20% 20% 20% 20% 20%;
+  display:flex;
+  flex-wrap: wrap;
 }
 .quizSquare {
   background-image: linear-gradient(blue 20%, navy);
   border: solid;
-  padding: .5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  min-height: 100%;
+  width: 25vw;
   color: gold;
   border-color: black;
+}
+
+.quizSquare:hover {
+  background-image: linear-gradient(yellow 20%, gold);
+  color: black;
+  cursor: pointer;
+}
+
+.quizSquare:active {
+  background-image: linear-gradient(white, white);
 }
 
 .quiz {
@@ -57,6 +64,19 @@ a {
 .cancelQuiz {
   z-index: 21;
   position: fixed;
+  width: 200px;
+  height: 100px;
+  border: 0;
+  background-color: gold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.cancelQuiz:hover {
+  background-color: black;
+  color: gold;
+  cursor: pointer;
 }
 
 .answers {
@@ -70,20 +90,32 @@ a {
 }
 
 .answer {
-  padding: 1em;
-  width: 200px;
+  padding: 1.5em;
+  width: 100%;
   margin: 1em;
-  background-color: blue;
+  background-image: linear-gradient(blue, navy);
   border: solid 10px;
-  color: gold;
-  font-size: 1.5em;
+  color: gold; 
+  font-size: 2vw;
   font-family: 'Franklin Gothic ', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
+  border-radius: 50%
 
 }
 
 .answer:hover {
-  background-color: gold;
+  color: white;
+  cursor: pointer
+}
+
+.answer:active {
   color: blue;
   cursor: pointer
+}
+
+/* mobile rendering */
+@media screen and (max-width: 600px) {
+  .quizSquare {
+    width: 100%;
+  }
 }
