@@ -65,19 +65,38 @@ a {
   z-index: 21;
   position: fixed;
   width: 200px;
-  height: 100px;
-  border: 0;
+  height: 50px;
+  border: solid;
   background-color: gold;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 30px;
   font-weight: bold;
 }
-
 .cancelQuiz:hover {
   background-color: black;
   color: gold;
   cursor: pointer;
 }
+
+.skip {
+  position: absolute;
+top: 50px;
+z-index: 22;
+background-color: gold;
+border: solid;
+width: 200px;
+border-top: 0;
+font-weight: bold;
+}
+
+.skip:hover {
+  background-color: black;
+  color: gold;
+  cursor: pointer;
+  border-top: solid;
+}
+
+
 
 .answers {
   justify-content: center;

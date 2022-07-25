@@ -58,8 +58,8 @@ function checkAnswer(answers) {
         
             return (
                <div className="quiz">
-               {finish !== true && <div className="skip">
-               <button ></button>
+               {finish !== true && <div>
+               <button className="skip" onClick={() => {emptyAnswers();setPoints(points-20);slide < 9 && setSlide(slide + 1);slide === 9 && setFinish(true)}}>Skip Question</button>
                </div>
                }
                 {finish === true && <Scoreboard points = {points} />}
