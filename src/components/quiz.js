@@ -58,6 +58,10 @@ function checkAnswer(answers) {
         
             return (
                <div className="quiz">
+               {finish !== true && <div className="skip">
+               <button ></button>
+               </div>
+               }
                 {finish === true && <Scoreboard points = {points} />}
                <div className="question"><h1>{decoder(round[slide].question)}</h1>
                
